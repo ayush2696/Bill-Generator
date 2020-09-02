@@ -83,34 +83,50 @@ function App() {
       </div>
       <div className = "SenderReceiver">
         <div className = "Sender">
-          <label>From</label>
-          <textarea type="text" name = "from" ref={register}></textarea>
-          <label>Email</label>
-          <textarea type="text" name = "fromEmail" ref={register}></textarea>
-          <label>Ph. No.</label>
-          <textarea type="text" name = "fromNumber" ref={register}></textarea>
+          <div className="TextLabel">
+            <label>From</label>
+            <textarea type="text" name = "from" ref={register}></textarea>
+          </div>
+          <div className="TextLabel">
+            <label>Email</label>
+            <textarea type="text" name = "fromEmail" ref={register}></textarea>
+          </div>
+          <div className="TextLabel">
+            <label>Ph. No.</label>
+            <textarea type="text" name = "fromNumber" ref={register}></textarea>
+          </div>
         </div>
         <div className = "Receiver">
-        <label>To</label>
-        <textarea type="text" name = "to" ref={register}></textarea>
-        <label>Email</label>
-        <textarea type="text" name = "toEmail" ref={register}></textarea>
-        <label>Ph. No.</label>
-        <textarea type="text" name = "toNumber" ref={register}></textarea>
+        <div className="TextLabel">
+          <label>To</label>
+          <textarea type="text" name = "to" ref={register}></textarea>
+        </div>
+        <div className="TextLabel">
+          <label>Email</label>
+          <textarea type="text" name = "toEmail" ref={register}></textarea>
+        </div>
+        <div className="TextLabel">
+          <label>Ph. No.</label>
+          <textarea type="text" name = "toNumber" ref={register}></textarea>
+        </div>
         </div>
       </div>
       <div className = "Separator"></div>
       <div className = "InvoiceDetails">
-        <label>Invoice Number</label>
-        <textarea type="text" name = "invoiceNumber" ref={register}></textarea>
-        <label>Date</label>
-        <textarea type="text" name = "date" ref={register}></textarea>
+        <div className="TextLabel">
+          <label>Invoice No.</label>
+          <textarea type="text" name = "invoiceNumber" ref={register}></textarea>
+        </div>
+        <div className="TextLabel">
+          <label>Date</label>
+          <textarea type="text" name = "date" ref={register}></textarea>
+        </div>
       </div>
       <div className = "Separator"></div>
       <div className = "Body">
         {itemDom.map( (input) => 
         input)}
-        <div className= "Item">
+        <div className= "Buttons">
           <button onClick={e=>addItem(e)}>Add Item</button>
           <button onClick={e=>removeItem(e)}>Remove Item</button>
           <button onClick={e=>onSubmit(e)} >Submit</button>

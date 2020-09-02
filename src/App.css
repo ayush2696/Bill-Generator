@@ -12,6 +12,8 @@ textarea {
     border-bottom: 1.5px solid #5f0f40;
     height: 20px;
     font-size: 14PX;
+    width: 100%;
+    resize: none;
 }
 textarea:focus{
   outline: 1px solid #5f0f40;
@@ -101,7 +103,14 @@ textarea:focus{
   flex-wrap: wrap;
   justify-content: space-around;
 }
-
+.Buttons{
+  padding-top: 20px;
+  padding-left: 30px ;
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  justify-content: space-around;
+}
 .Item-Container{
   display: flex;
   flex-direction: row;
@@ -159,7 +168,45 @@ button {
       width: 80%;
     }
     .DownloadButton{
+      width: 100%;
+    }
+    .SenderReceiver{
+      display: flex;
+      flex-direction: column;
+    }
+    .Receiver{
+      display: flex;
+      padding-left: 30px ;
+      width:80%;
+    }
+    .Sender{
+      display: flex;
+      flex-direction: column;
+      width:80%;
+    }
+    .TextLabel{
+      display: flex;
+      flex-direction: row;
+    }
+    
+    label{
+      width:30%
+    }
+    textarea{
+      resize: none;
       width: 80%;
     }
-  
+    .Separator{
+      margin-left: 10px;
+      margin-right: 10px;
+    }
+    .InvoiceDetails{
+      width: 80%;
+    }
+    .Body{
+      width: 80%;
+    }
+    .Item{
+      width:100%
+    }
   }
