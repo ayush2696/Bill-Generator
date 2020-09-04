@@ -35,6 +35,34 @@ textarea:focus{
   padding-top: 20px;
   padding-right: 30px;
 }
+.Header-Logo button{
+    width: 30%;
+    height: fit-content;
+    margin-top: 35px;
+}
+
+.Header-Logo input{
+  width: 0.1px;
+	height: 0.1px;
+  opacity: 0;
+  padding-top: 40px;
+	overflow: hidden;
+	z-index: -1;
+}
+ .InputFile + label{
+  height: 80px;
+  width: 200px;
+  padding:16px;
+  margin-right: 40px;
+  font-size: 1.25em;
+  font-weight: 700;
+  color: black;
+  background-color: white;
+  border: 2px dotted #5f0f40;
+
+}
+
+
 
 .SenderReceiver {
   display: flex;

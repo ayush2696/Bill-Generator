@@ -9,15 +9,15 @@ import PdfGenerator from './PdfGenerator.js'
 function App() {
   
   const [data,setData] = useState({});
-  const [renderPdfFlag,setRenderpdfFlag] = useState(false);
   const [renderDownloadLink,setRenderDownloadLink] = useState([]);
+  const [image,setImage] = useState();
 
 
   const { register, handleSubmit,watch,errors } = useForm();
   function returnDownloadLink(data) {
       return(
         <PDFDownloadLink 
-              document={<PdfGenerator pdfDetails={{pdf:data,count:itemDom}} />}
+              document={<PdfGenerator pdfDetails={{pdf:data,count:itemDom,image:localStorage.getItem("logo")}} />}
               fileName={`${data.invoiceNumber}.pdf`}
             >
             {({blob,url,loading,error}) => loading ? <div className="DownloadButton">Loading Document</div>: <div className="DownloadButton">Download Document</div>}
@@ -26,7 +26,9 @@ function App() {
   }
   const onSubmit = handleSubmit(data => {
     setData(data);
-    console.log(data)
+    localStorage["from"]= data.from
+    localStorage["fromEmail"]= data.fromEmail
+    localStorage["fromNumber"]= data.fromNumber
     setRenderDownloadLink([returnDownloadLink(data)]);  
   })
  
@@ -55,11 +57,9 @@ function App() {
     e.preventDefault();
     setItemDom([...itemDom,returnComponent(itemDom.length)])
   }
-
   function removeItem(e){
     e.preventDefault();
     let index = -1;
-
     setItemDom(itemDom.filter(
       (thing) =>
         {
@@ -70,6 +70,27 @@ function App() {
     )
   )
   }
+  function imageUpload(e){
+    e.preventDefault();
+    const file = e.target.files[0];
+    getBase64(file).then(base64 => {
+      localStorage["logo"] = base64;
+      setImage(base64)
+     // console.debug("file stored",base64);
+    });
+  }
+  function clearLogo(e){
+    e.preventDefault();
+    localStorage.removeItem("logo");
+    setImage("");
+  }
+  const getBase64 = (file) => {
+    return new Promise((resolve,reject) => {
+       const reader = new FileReader();
+       reader.onload = () => resolve(reader.result);
+       reader.onerror = error => reject(error);
+       reader.readAsDataURL(file);
+    })};
 
   return (
     <form  className="App">
@@ -78,22 +99,23 @@ function App() {
         <h1>Invoice</h1>
         </div>
         <div className = "Header-Logo">
-        <img src ={logo} alt="Company Logo"></img>
+          {localStorage.getItem('logo')? <div style={{display:"flex"}}><img src ={localStorage.getItem('logo')} alt="Company Logo"></img><button onClick={e =>{clearLogo(e)}}>Remove Logo</button></div>:<div><input type="file" id="file" name='file' className = "InputFile" onChange={ e => imageUpload(e)}/><label for="file">Upload Logo</label></div>}
+        {/*<img src ={logo} alt="Company Logo"></img>*/}
         </div>
       </div>
       <div className = "SenderReceiver">
         <div className = "Sender">
           <div className="TextLabel">
             <label>From</label>
-            <textarea type="text" name = "from" ref={register}></textarea>
+            {localStorage.getItem('from')?<textarea type="text" name = "from" defaultValue ={localStorage.getItem("from")} ref={register}></textarea>:<textarea type="text" name = "from" ref={register}></textarea>}
           </div>
           <div className="TextLabel">
             <label>Email</label>
-            <textarea type="text" name = "fromEmail" ref={register}></textarea>
+            {localStorage.getItem('fromEmail')?<textarea type="text" name = "fromEmail" defaultValue ={localStorage.getItem("fromEmail")} ref={register}></textarea>:<textarea type="text" name = "fromEmail" ref={register}></textarea>}
           </div>
           <div className="TextLabel">
             <label>Ph. No.</label>
-            <textarea type="text" name = "fromNumber" ref={register}></textarea>
+            {localStorage.getItem('fromNumber')?<textarea type="text" name = "fromNumber" defaultValue ={localStorage.getItem("fromNumber")} ref={register}></textarea>:<textarea type="text" name = "fromNumber" ref={register}></textarea>}
           </div>
         </div>
         <div className = "Receiver">

@@ -122,7 +122,7 @@ const PdfGenerator = React.memo((props)=>{
                             <Text style={styles.HeaderName}>Invoice</Text>
                         </View>
                         <View style = {styles.HeaderLogo}>
-                            <Image src ={logo} alt="Company Logo"></Image>
+                            <Image src ={props.pdfDetails.image} alt="Company Logo"></Image>
                         </View>
                     </View>
                     <View style = {styles.SenderReceiver}>
