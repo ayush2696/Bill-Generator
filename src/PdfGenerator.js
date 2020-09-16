@@ -1,6 +1,6 @@
 import React from 'react';
 import {Document,Page, View,Text,StyleSheet,Image} from "@react-pdf/renderer"
-import logo from './logo.jpg'
+
 const styles = StyleSheet.create({
     page:{
         borderTop: "10pt solid #5f0f40",

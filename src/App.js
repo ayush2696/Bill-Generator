@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import logo from './logo.jpg';
+
 import {useForm} from "react-hook-form";
 import {PDFDownloadLink,PDFViewer} from "@react-pdf/renderer";
 import ReactPDF from "@react-pdf/renderer"
